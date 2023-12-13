@@ -16,7 +16,7 @@ const Welcome = () => {
           {""}Find The Most
         </Text>
         <Text style={styles.welcomeTxt(COLORS.primary, 0)}>
-          {""} Luxurious Furniture
+          {""}Luxurious Furniture
         </Text>
       </View>
       <View style={styles.searchContainer}>
