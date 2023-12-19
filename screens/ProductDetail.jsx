@@ -1,5 +1,6 @@
 import { View, Text } from "react-native";
 import React from "react";
+import { useRoute } from "@react-navigation/native";
 import {
   Ionicons,
   SimpleLineIcons,
@@ -15,8 +16,10 @@ import { useState } from "react";
 // import { Alert } from "react-native";
 
 const ProductDetails = ({ navigation }) => {
+  const route = useRoute();
+  const { item } = route.params;
   const [count, setCount] = useState(1);
-
+  console.log(item);
   const increment = () => {
     setCount(count + 1);
   };
@@ -39,15 +42,17 @@ const ProductDetails = ({ navigation }) => {
         </TouchableOpacity>
       </View>
       <Image
-        source={require("../assets/images/fn1.jpg")}
+        source={{
+          uri: item.imageUrl,
+        }}
         style={styles.image}
       />
 
       <View style={styles.details}>
         <View style={styles.titleRow}>
-          <Text style={styles.title}>Product</Text>
+          <Text style={styles.title}>{item.title}</Text>
           <View style={styles.priceWrapper}>
-            <Text style={styles.price}>$ 660.88</Text>
+            <Text style={styles.price}>{item.price}</Text>
           </View>
         </View>
         <View style={styles.ratingRow}>
@@ -73,23 +78,18 @@ const ProductDetails = ({ navigation }) => {
 
         <View style={styles.descriptionWraper}>
           <Text style={styles.description}>Description </Text>
-          <Text style={styles.descText}>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi hic
-            rerum, laborum dolore excepturi vel quibusdam officia ipsa libero
-            quia expedita consequatur alias perferendis facilis nihil. Odio
-            similique recusandae architecto?
-          </Text>
+          <Text style={styles.descText}>{item.description}</Text>
         </View>
 
         <View style={{ marginBottom: SIZES.small }}>
           <View style={styles.location}>
             <View style={{ flexDirection: "row" }}>
               <Ionicons name="location-outline" size={20} />
-              <Text>Dallas</Text>
+              <Text>{item.product_location}</Text>
             </View>
             <View style={{ flexDirection: "row" }}>
               <MaterialCommunityIcons name="truck-delivery-outline" size={20} />
-              <Text>Free Delivery</Text>
+              <Text> Free Delivery </Text>
             </View>
           </View>
         </View>
